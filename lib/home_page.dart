@@ -28,16 +28,16 @@ class _HomePageState extends State<HomePage> implements CryptoListViewContract {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Crypto App"),
+    return  Scaffold(
+        appBar:  AppBar(
+          title:  Text("Crypto App"),
           elevation: defaultTargetPlatform == TargetPlatform.iOS ? 0.0 : 5.0,
         ),
         body: _isLoading
-            ? new Center(
-          child: new CircularProgressIndicator(),
+            ?  Center(
+          child:  CircularProgressIndicator(),
         )
-            :new ListView.builder(
+            : ListView.builder(
           itemCount: _currencies.length,
           itemBuilder: (BuildContext context,int index)=>
               _getRowWithDivider(index),)
@@ -47,23 +47,23 @@ class _HomePageState extends State<HomePage> implements CryptoListViewContract {
   Widget _getRowWithDivider(int i) {
     final Crypto currency = _currencies[i];
     var children = <Widget>[
-      new Padding(
-          padding: new EdgeInsets.all(10.0),
+       Padding(
+          padding:  EdgeInsets.all(10.0),
           child: _getListItemUi(currency)
       ),
-      new Divider(height: 5.0),
+       Divider(height: 5.0),
     ];
 
-    return new Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: children,
     );
   }
 
   ListTile _getListItemUi(Crypto currency) {
-    return new ListTile(
-      leading: new FadeInImage(placeholder: new AssetImage('assets/2.0x/stars.png'), image: new NetworkImage("http://cryptoicons.co/32@2x/color/"+currency.symbol.toLowerCase()+"@2x.png")),
-      title: new Text(currency.name,
+    return  ListTile(
+      leading: CircleAvatar(child: currency.icon),
+      title:  Text(currency.name,
           style: new TextStyle(fontWeight: FontWeight.bold)),
       subtitle:
       _getSubtitleText(currency.price_usd, currency.percent_change_1h),

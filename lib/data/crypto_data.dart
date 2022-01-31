@@ -1,21 +1,24 @@
 import 'dart:async';
 
+import 'package:crypto_font_icons/crypto_font_icons.dart';
+import 'package:flutter/cupertino.dart';
+
 class Crypto {
   String name;
   String price_usd;
   String percent_change_1h;
-  String symbol;
+  Icon icon;
 
   Crypto(
       {required this.name,
       required this.price_usd,
-      required this.percent_change_1h, required this.symbol});
+      required this.percent_change_1h, required this.icon});
 
   Crypto.fromMap(Map<String, dynamic> map)
       : name = map['name'],
         price_usd = map['price_usd'],
         percent_change_1h = map['percent_change_1h'],
-        symbol = map['symbol'];
+        icon = const Icon(CryptoFontIcons.BTC);
 }
 
 abstract class CryptoRepository {
